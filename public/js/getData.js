@@ -99,3 +99,159 @@ monsterCard.addEventListener("click", async function(){
    
 
 })
+
+
+
+
+
+spellCard.addEventListener("click", async function(){
+
+    bigCard.innerHTML = "Loading...";
+
+    try {
+        const response = await axios.get('/api/random-spell');
+        const spell = response.data;
+
+        console.log(spell);
+
+        bigCard.innerHTML = `
+        <div class="infoContainer">
+
+            <div class="monsterNameDiv">
+                <h1 class="monsterName">${spell.name}</h1>
+            </div>
+
+            <div class="sizeDiv">
+                <small class="type">Range:</small>
+                <small class="typeValue">${spell.range}</small>
+                
+                <small class="size">Duration:</small>
+                <small class="sizeValue">${spell.duration}</small>
+                
+                <small class="alignment">Level:</small>
+                <small class="alignmentValue">${spell.level}</small>
+            </div>
+
+            <div class="tableDiv"> 
+                <table class="monsterStatsTable">
+                    <thead>
+                        <tr>
+                            <th>Casting Time</th>
+                            <th>School</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="statValue">${spell.casting_time}</td>
+                            <td class="statValue">${spell.school.name}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="descriptionDiv" style="margin-top: 20px; padding: 0 20px; text-align: center;">
+                <small class="type">Description:</small>
+                <p style="color: #3d2b1f; line-height: 1.4;">${spell.desc}</p>
+            </div>
+
+        </div>
+        `;
+
+    } catch(error) {
+        bigCard.innerHTML = "Error loading spell.";
+    }
+});
+
+
+
+equipmentCard.addEventListener("click", async function(){
+
+    bigCard.innerHTML = "Loading...";
+
+
+    try {
+        const response = await axios.get('/api/random-equipment');
+        const equipment = response.data;
+        
+    
+        bigCard.innerHTML = `
+        <div class="infoContainer">
+
+            <div class="monsterNameDiv">
+                <h1 class="monsterName">${equipment.name}</h1>
+            </div>
+
+            <div class="sizeDiv">
+                <small class="type">Category:</small>
+                <small class="typeValue">${equipment.equipment_category.name}</small>
+                
+                <small class="size">Weight:</small>
+                <small class="sizeValue">${equipment.weight} lbs</small>
+                
+                <small class="alignment">Cost:</small>
+                <small class="alignmentValue">${equipment.cost.quantity} ${equipment.cost.unit}</small>
+            </div>
+
+            
+
+            <div class="tableDiv"> 
+                <table class="monsterStatsTable">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="statValue">Equipment Type</td>
+                            <td class="statValue">${equipment.weapon_category || 'Adventuring Gear'}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        `;
+
+    } catch(error) {
+        bigCard.innerHTML = "Error loading equipment.";
+    }
+});
+
+
+
+
+abilityCard.addEventListener("click", async function(){
+    bigCard.innerHTML = "Loading...";
+
+    try {
+        const response = await axios.get('/api/random-magic-item');
+        const item = response.data;
+
+        bigCard.innerHTML = `
+        <div class="infoContainer">
+            <div class="monsterNameDiv">
+                <h1 class="monsterName">${item.name}</h1>
+            </div>
+
+            <div class="sizeDiv">
+                <small class="type">Category:</small>
+                <small class="typeValue">${item.equipment_category.name}</small>
+                <small class="size">Rarity:</small>
+                <small class="sizeValue">Magic Item</small>
+            </div>
+
+            <div class="descriptionDiv" style="margin-top: 20px; padding: 0 20px; text-align: center;">
+                <small class="type">Description:</small>
+                <p style="color: #3d2b1f; line-height: 1.4; max-height: 300px; overflow-y: auto;">
+                    ${item.desc}
+                </p>
+            </div>
+        </div>
+        `;
+
+    } catch(error) {
+        bigCard.innerHTML = "Error loading Magic Item.";
+    }
+});
