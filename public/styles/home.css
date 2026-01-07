@@ -1,0 +1,240 @@
+.Container{
+
+
+    width:90%;
+    max-width: 1100px;
+    margin:0 auto;
+  
+    height:100vh;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    
+ 
+}
+
+.cardsContainer{
+    width:100%;
+    height:auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-rows: 1fr 1fr;
+    gap:2rem;
+
+
+}
+
+.card{
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    cursor: pointer;
+    min-height: 250px;
+}
+
+.card:hover{
+    
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out; 
+    box-shadow: 0 4px 30px rgba(0, 255, 229, 0.2);
+
+
+
+}
+.text{
+    color:#b8adba;
+    font-size: 1.3rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+.card1{
+    background-color: #6b3a80;
+    grid-column-start:1 ;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+
+    background-image: url('/images/spells.png');
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position:center;
+    
+
+
+}
+
+.card2{
+    background-color: #822522;
+
+     grid-column-start:2 ;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+
+    
+    background-image: url('/images/Monster.png');
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position:center;
+}
+
+.card3{
+    background-color: #8e6021;
+
+     grid-column-start:1 ;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+       background-image: url('/images/abilities.png');
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position:center;
+}
+
+.card4{
+    background-color: #2d6032;
+
+     grid-column-start:2 ;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+     background-image: url('/images/equipments.png');
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position:center;
+}
+.bigCard{
+    background-color: #d6c59f;
+
+     grid-column-start:3 ;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 3;
+   
+}
+
+
+.infoContainer{
+
+    width:100%;
+    height:100%;
+
+    display: flex;
+    flex-direction: column;
+    gap:3rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.monsterNameDiv{
+    width:90%;
+    display: flex;
+    justify-content: center;
+}
+
+.monsterName{
+    font-family: 'Almendra' , serif;
+    font-weight: 700;
+    color: #3d2b1f;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.sizeDiv{
+
+    width:90%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    gap:1rem;
+}
+.type,.size,.alignment{
+    width:100%;
+    display:flex;
+    justify-content: flex-start;
+    font-size: 1rem;
+    font-family: 'Almendra' , serif;
+
+}
+
+.typeValue, .sizeValue, .alignmentValue{
+    font-size: 1.8rem;
+    font-family: 'Almendra' , serif;
+    width:100%;
+    display: flex;
+    justify-content: center;
+}
+
+.monsterImageDiv{
+    width:90%
+}
+
+.monsterImage{
+    width:100%;
+    border-radius: 10px;
+    
+}
+
+
+.tableDiv {
+    width: 95%;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+   
+}
+
+.monsterStatsTable {
+    width: 100%;
+    border-collapse: collapse; 
+    font-family: 'Almendra', serif;
+}
+
+
+.monsterStatsTable thead th {
+    color: #822522; 
+    font-size: 1.2rem;
+    padding-bottom: 0.5rem;
+    text-align: center;
+    border-bottom: 2px solid #3d2b1f; 
+}
+
+.monsterStatsTable tbody td {
+    color: #3d2b1f;
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding-top: 0.8rem;
+    text-align: center;
+}
+
+
+
+
+@media (max-width: 700px) {
+
+    html{
+        font-size: 50%;
+    }
+    
+    .cardsContainer{
+
+       grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+    .card1, .card2, .card3, .card4, .bigCard {
+        grid-column: auto;
+        grid-row: auto;
+        height: 300px; /* Give small cards a fixed height so they don't collapse */
+    }
+
+    /* If you want the bigCard to always be at the bottom */
+    .bigCard {
+        order: 5; 
+        height: auto; /* Let the monster data dictate the height */
+        min-height: 500px;
+    }
+}
