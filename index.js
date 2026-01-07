@@ -2,7 +2,10 @@ import express from "express";
 import axios from 'axios';
 
 const app = express();
+
+const PORT = process.env.PORT || 3000;
 let monsterList =[];
+
 
 app.use(express.static('public'))
 
@@ -54,6 +57,6 @@ app.get('/api/random-monster', async (req, res) => {
 });
 
 
-app.listen(3000,function(){
-    console.log('listening on port 3000');
-})
+app.listen(PORT, function() {
+    console.log(`✅ Server is running on port ${PORT}`);
+});
