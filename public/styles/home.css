@@ -5,7 +5,7 @@
     max-width: 1100px;
     margin:0 auto;
   
-    height:100vh;
+    height:auto;
     margin-top: 4rem;
     margin-bottom: 4rem;
     
@@ -253,5 +253,192 @@
         order: 5; 
         height: auto; /* Let the monster data dictate the height */
         min-height: 500px;
+    }
+}
+
+
+
+
+
+
+
+
+
+/*        Monster Manual Section    //////////////////////////  */
+
+
+.monsterManual-text {
+    width: 100%;
+    margin: 4rem 0 1rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+.monsterManual-text h1 {
+    font-size: 2.5em;
+    font-family: 'Almendra', serif;
+    color: #b68b36; 
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    margin: 0;
+}
+
+
+
+
+.monsterManual-div {
+    width: 95%;
+    max-width: 1200px;
+    margin: 4rem auto;
+    background: linear-gradient(145deg, #3d2b1f, #2a1d15);
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    border: 4px solid #b68b36;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    overflow: hidden;
+}
+
+.filterButtons-div {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.2); 
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 2rem;
+    gap: 1.5rem;
+    border-bottom: 2px solid #b68b36;
+}
+.character-div, .status-div, .applyBtn-div{
+
+    width:25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.character-div h3, .status-div h3 {
+    font-size: 2em;
+       font-family: 'Almendra', serif;
+    color:white;
+    text-align: center;
+      
+}
+
+#name-input, #status-select{
+
+    width:100%;
+    min-height: 30px;
+    background-color: #f3f1de;
+    font-family: 'Almendra', serif;
+    border-radius: 4px;
+
+}
+
+
+
+.apply-btn{
+    color:#3e2f23;
+    font-family: 'Almendra', serif ;
+    text-decoration: none;
+    font-size: 2rem;
+    background-color: #b68b36;
+    min-height: 20px;
+    padding:1rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    
+}
+
+.filteredResults-div {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    gap: 25px;
+    padding: 30px;
+    box-sizing: border-box; 
+    justify-content: center;
+    justify-items: center;
+}
+
+.charDivStyle {
+    background-color: #f3f1de; 
+    border: 4px solid #b68b36; 
+    border-radius: 8px;
+    width: 100%;
+    max-width: 280px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    transition: transform 0.2s;
+}
+.charDivStyle:hover {
+    transform: translateY(-5px);
+    border-color: #d4af37;
+}
+
+.char-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #3d2b1f;
+    margin-bottom: 1rem;
+    object-fit: cover;
+}
+
+.char-name {
+    font-family: 'Almendra', serif;
+    font-size: 1.8rem;
+    color: #3d2b1f;
+    margin: 0.5rem 0;
+    text-align: center;
+}
+
+.char-status {
+    font-family: 'Almendra', serif;
+    font-size: 1.2rem;
+    padding: 0.2rem 0.8rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+
+
+
+@media  (max-width:700px){
+
+    html{
+        font-size: 50%;
+    }
+    
+} 
+
+@media (max-width:480px){
+
+     html{
+        font-size: 40%;
+    }
+
+    .filterButtons-div{
+        flex-direction: column;
+    }
+
+    .apply-btn{
+        
+        align-self: center;
+
+    }
+
+    .monsterType-div, .monsterSize-div, .applyBtn-div{
+        width:50%;
     }
 }

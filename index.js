@@ -9,6 +9,14 @@ let spellsList = [];
 let equipmentList = [];
 let magicItemsList = [];
 
+const monsterSizes = ["Tiny", "Small", "Medium", "Large", "Huge", "Gargantuan"];
+
+const monsterTypes = [
+    "aberration", "beast", "celestial", "construct", "dragon", 
+    "elemental", "fey", "fiend", "giant", "humanoid", 
+    "monstrosity", "ooze", "plant", "undead", "swarm"
+];
+
 
 app.use(express.static('public'))
 
@@ -18,7 +26,10 @@ app.set('view engine', 'ejs');
 
 app.get('/', function(req, res){
 
-    res.render('home');
+    res.render('home', {
+        sizes: monsterSizes,
+        types: monsterTypes,
+    });
 })
 
 
@@ -37,8 +48,14 @@ async function initializeData(){
         spellsList = spells.data.results;
         equipmentList = equipment.data.results;
         
-      
         magicItemsList = magicItems.data.results; 
+        
+        console.log(monsterList);
+        console.log("monster list loaded:", monsterList.length);
+
+
+
+      
 
         console.log("✅ All D&D data lists are ready!");
 
@@ -146,6 +163,47 @@ app.get('/api/random-magic-item', async (req, res) => {
         res.status(500).json({ error: "Failed" });
     }
 });
+
+
+
+
+
+
+app.get('/api/filter-characters', async (req, res)=>{
+
+
+    const name = req.query.name;
+    const status = req.query.status;
+
+    try{
+
+        const response = await axios.get('https://rickandmortyapi.com/api/character/',{
+            params:{
+                name :name,
+                status : status,
+            }
+        })
+
+        res.json(response.data.results);
+
+
+    }catch(error){
+
+        if(error.response && error.response.status === 404){
+            res.status(404).json({messgae: "No character found!"})
+
+        }else {
+            res.status(500).json({ message: "Server error" });
+        }
+
+    }
+
+
+})
+
+
+
+
 
 
 app.listen(PORT, function() {

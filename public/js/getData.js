@@ -7,6 +7,13 @@ const equipmentCard = document.querySelector('.card4');
 const bigCard = document.querySelector('.bigCard');
 
 
+const applyBtn = document.querySelector('.apply-btn');
+const filteredResultsDiv = document.querySelector('.filteredResults-div');
+
+const resultsDiv = document.querySelector('.filteredResults-div');
+
+
+
 monsterCard.addEventListener("click", async function(){
 
     bigCard.innerHTML = "Loading...";
@@ -255,3 +262,63 @@ abilityCard.addEventListener("click", async function(){
         bigCard.innerHTML = "Error loading Magic Item.";
     }
 });
+
+
+
+
+
+applyBtn.addEventListener("click", async function(e){
+
+    e.preventDefault();
+
+   const nameInput = document.querySelector('#name-input').value;
+   const status = document.querySelector('#status-select').value;
+
+
+
+
+
+    try{
+
+        const response = await axios.get('/api/filter-characters',{
+            params:{
+                name: nameInput,
+                status: status,
+            }
+        });
+
+        const characters =  response.data;
+
+
+        resultsDiv.innerHTML = "";
+
+        characters.forEach(char =>{
+
+            const charDiv = document.createElement('div');
+
+            charDiv.classList.add('charDivStyle');
+
+
+         charDiv.innerHTML = `
+        <img class="char-img" src="${char.image}" alt="${char.name}">
+        <h2 class="char-name">${char.name}</h2>
+        <span class="char-status">${char.status}</span>
+        <p style="font-family: 'Almendra'; color: #6b4e31; margin-top: 10px;">
+            Species: ${char.species}
+        </p>
+    `;
+            resultsDiv.appendChild(charDiv);
+
+            
+
+        })
+
+
+    }catch(error){
+console.log(error);
+    }
+
+
+
+
+})
